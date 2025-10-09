@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exercise 6 - Student Marks & Grade System</title>
+  <script>
+    function studentMarks() {
+      const subjects = ["English", "Math", "Science", "Computer", "Urdu"];
+      const marks = [];
+      const totalSubjects = subjects.length;
+      let totalMarks = 0;
+
+      alert("🎓 Welcome to Student Marks & Grade System");
+
+      for (let i = 0; i < totalSubjects; i++) {
+        const input = prompt(`Enter marks for ${subjects[i]} (0–100):`);
+        if (input === null) {
+          alert("🚪 Operation cancelled.");
+          return;
+        }
+
+        const mark = Number(input);
+
+        if (isNaN(mark) || mark < 0 || mark > 100) {
+          alert(`⚠️ Invalid marks for ${subjects[i]}! Please enter a number between 0 and 100.`);
+          i--; 
+          continue;
+        }
+
+        marks.push(mark);
+        totalMarks += mark;
+      }
+
+      const percentage = (totalMarks / (totalSubjects * 100)) * 100;
+      let grade;
+
+      if (percentage >= 80) grade = "A";
+      else if (percentage >= 60) grade = "B";
+      else grade = "Fail";
+
+      let result = "📊 Student Result:\n\n";
+      for (let i = 0; i < totalSubjects; i++) {
+        result += `${subjects[i]}: ${marks[i]}\n`;
+      }
+
+      result += `\nTotal Marks: ${totalMarks}/${totalSubjects * 100}`;
+      result += `\nPercentage: ${percentage.toFixed(2)}%`;
+      result += `\nGrade: ${grade}`;
+
+      alert(result);
+    }
+  </script>
+</head>
+<body onload="studentMarks()">
+</body>
+</html>

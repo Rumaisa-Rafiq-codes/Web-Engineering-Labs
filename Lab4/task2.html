@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exercise 2 - Temperature Conversion</title>
+  <script>
+    function temperatureConverter() {
+      const choice = prompt(
+        "Choose conversion type:\n1️⃣ Celsius to Fahrenheit\n2️⃣ Fahrenheit to Celsius"
+      );
+
+      if (choice === null) return; 
+
+      const temperatureInput = prompt("Enter temperature value:");
+      if (temperatureInput === null) return;
+
+      const temp = Number(temperatureInput);
+
+      if (isNaN(temp)) {
+        alert("⚠️ Please enter a valid numeric temperature!");
+        return;
+      }
+
+      let result;
+
+      if (choice === "1") {
+      
+        result = (temp * 9) / 5 + 32;
+        alert(`${temp.toFixed(2)}°C = ${result.toFixed(2)}°F`);
+      } 
+      else if (choice === "2") {
+     
+        result = ((temp - 32) * 5) / 9;
+        alert(`${temp.toFixed(2)}°F = ${result.toFixed(2)}°C`);
+      } 
+      else {
+        alert("❌ Invalid choice! Please select 1 or 2.");
+      }
+    }
+  </script>
+</head>
+<body onload="temperatureConverter()">
+</body>
+</html>

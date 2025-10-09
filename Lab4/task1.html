@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exercise 1 - Age Calculator</title>
+  <script>
+    function ageCalculator() {
+      const name = prompt("Enter your name:");
+
+      if (!name || name.trim() === "") {
+        alert("❌ Please enter a valid name!");
+        return;
+      }
+
+      const birthYearInput = prompt("Enter your birth year:");
+      const currentYear = new Date().getFullYear();
+      const birthYear = Number(birthYearInput);
+
+      if (isNaN(birthYear) || birthYear <= 0) {
+        alert("⚠️ Please enter a valid numeric year!");
+        return;
+      }
+
+      if (birthYear > currentYear) {
+        alert("🚫 Birth year cannot be in the future!");
+        return;
+      }
+
+      const age = currentYear - birthYear;
+
+      alert(`Hello ${name}! 🎉 You are ${age} years old.`);
+
+      if (age >= 18) {
+        alert("✅ You are an Adult.");
+      } else {
+        alert("👶 You are a Minor.");
+      }
+    }
+  </script>
+</head>
+<body onload="ageCalculator()">
+</body>
+</html>

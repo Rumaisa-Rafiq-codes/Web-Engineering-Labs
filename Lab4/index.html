@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Exercises Menu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    a {
+      display: block;
+      margin: 10px auto;
+      padding: 12px 20px;
+      width: 300px;
+      background: #6380a0;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      background: #263b52;
+    }
+  </style>
+
+  <script>
+    function ageCalculator() {
+      let name = prompt("Enter your name:");
+      if (!name || name.trim() === "") return alert("Please enter a valid name!");
+      let birthYear = prompt("Enter your birth year:");
+      let currentYear = new Date().getFullYear();
+      birthYear = Number(birthYear);
+      if (isNaN(birthYear) || birthYear <= 0 || birthYear > currentYear)
+        return alert("Please enter a valid birth year!");
+      let age = currentYear - birthYear;
+      alert(`Hello ${name}, you are ${age} years old.\n${age >= 18 ? "You are an Adult ✅" : "You are a Minor 👶"}`);
+    }
+
+    function temperatureConversion() {
+      let choice = prompt("1. Celsius → Fahrenheit\n2. Fahrenheit → Celsius");
+      if (choice !== "1" && choice !== "2") return alert("Invalid choice!");
+      let temp = prompt("Enter temperature:");
+      if (temp === null || temp.trim() === "" || isNaN(temp)) return alert("Invalid temperature!");
+      temp = Number(temp);
+      let result =
+        choice === "1" ? (temp * 9 / 5 + 32).toFixed(2) + "°F" : ((temp - 32) * 5 / 9).toFixed(2) + "°C";
+      alert("Converted Temperature: " + result);
+    }
+
+    function bmiCategorization() {
+      let w = Number(prompt("Enter your weight (kg):"));
+      let h = Number(prompt("Enter your height (m):"));
+      if (isNaN(w) || isNaN(h) || w <= 0 || h <= 0) return alert("Invalid input!");
+      let bmi = w / (h * h);
+      let category = bmi < 18.5 ? "Underweight" : bmi <= 24.9 ? "Normal" : bmi <= 29.9 ? "Overweight" : "Obese";
+      alert(`Your BMI: ${bmi.toFixed(2)}\nCategory: ${category}`);
+    }
+
+    function bmiImperial() {
+      let w = Number(prompt("Enter your weight (lb):"));
+      let h = Number(prompt("Enter your height (in):"));
+      if (isNaN(w) || isNaN(h) || w <= 0 || h <= 0) return alert("Invalid input!");
+      let bmi = (w / (h * h)) * 703;
+      alert(`Your BMI: ${bmi.toFixed(1)}`);
+    }
+
+    function guessNumber() {
+      let num = Math.floor(Math.random() * 10) + 1;
+      let tries = 3;
+      for (let i = 1; i <= tries; i++) {
+        let guess = prompt(`Attempt ${i} of ${tries}: Guess a number (1–10)`);
+        if (guess === null) return alert("Game cancelled!");
+        guess = Number(guess);
+        if (isNaN(guess) || guess < 1 || guess > 10) { alert("Invalid number!"); i--; continue; }
+        if (guess === num) return alert(`🎉 Correct! The number was ${num}`);
+        alert(guess > num ? "Too High!" : "Too Low!");
+      }
+      alert(`❌ Out of attempts! The correct number was ${num}.`);
+    }
+
+    function studentGrade() {
+      let subjects = ["English", "Math", "Science", "Computer", "Urdu"];
+      let total = 0;
+      for (let s of subjects) {
+        let m = prompt(`Enter marks for ${s} (0–100):`);
+        if (m === null) return alert("Cancelled!");
+        m = Number(m);
+        if (isNaN(m) || m < 0 || m > 100) { alert("Invalid marks!"); subjects.unshift(s); continue; }
+        total += m;
+      }
+      let per = (total / 500) * 100;
+      let grade = per >= 80 ? "A" : per >= 60 ? "B" : "Fail";
+      alert(`Total: ${total}/500\nPercentage: ${per.toFixed(2)}%\nGrade: ${grade}`);
+    }
+
+    function dailyToolkit() {
+      let choice = prompt(
+        "📱 DAILY UTILITIES TOOLKIT 📱\n\n1. Format Name\n2. Generate OTP\n3. Search City\n4. Today's Date\n5. Calculator"
+      );
+      if (choice === null) return;
+
+      switch (choice) {
+        case "1":
+          let n = prompt("Enter your full name:");
+          if (!n) return alert("Invalid name!");
+          let formatted = n.toLowerCase().split(" ").map(x => x.charAt(0).toUpperCase() + x.slice(1)).join(" ");
+          alert("Formatted Name: " + formatted);
+          break;
+
+        case "2":
+          alert("Your 4-digit OTP: " + (Math.floor(1000 + Math.random() * 9000)));
+          break;
+
+        case "3":
+          let cities = ["Karachi", "Lahore", "Islamabad"];
+          let city = prompt("Enter city name:");
+          if (!city) return alert("Invalid input!");
+          alert(cities.some(c => c.toLowerCase() === city.toLowerCase()) ? "✅ Found!" : "❌ Not Found!");
+          break;
+
+        case "4":
+          let d = new Date();
+          alert(`Today's Date: ${d.getDate().toString().padStart(2, '0')}/${(d.getMonth() + 1).toString().padStart(2, '0')}/${d.getFullYear()}`);
+          break;
+
+        case "5":
+          let a = Number(prompt("Enter first number:"));
+          let b = Number(prompt("Enter second number:"));
+          let op = prompt("Choose +, -, *, /");
+          if (isNaN(a) || isNaN(b)) return alert("Invalid numbers!");
+          if (op === "/" && b === 0) return alert("Division by zero not allowed!");
+          let res = op === "+" ? a + b : op === "-" ? a - b : op === "*" ? a * b : op === "/" ? a / b : null;
+          alert(res === null ? "Invalid operator!" : `Result: ${a} ${op} ${b} = ${res}`);
+          break;
+
+        default:
+          alert("Invalid choice!");
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <h1>JavaScript Exercises Menu</h1>
+
+  <a href="#" onclick="ageCalculator()">Exercise 1 – Age Calculator</a>
+  <a href="#" onclick="temperatureConversion()">Exercise 2 – Temperature Conversion</a>
+  <a href="#" onclick="bmiCategorization()">Exercise 3 – BMI Categorization</a>
+  <a href="#" onclick="bmiImperial()">Exercise 4 – BMI (lb/in)</a>
+  <a href="#" onclick="guessNumber()">Exercise 5 – Guess the Number</a>
+  <a href="#" onclick="studentGrade()">Exercise 6 – Student Marks & Grade</a>
+  <a href="#" onclick="dailyToolkit()">Exercise 7 – Daily Utilities Toolkit</a>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exercise 4 - BMI Calculation</title>
+  <script>
+    function bmiCalculator() {
+      const weightInput = prompt("Enter your weight in pounds (lb):");
+      if (weightInput === null) return;
+
+      const heightInput = prompt("Enter your height in inches (in):");
+      if (heightInput === null) return;
+
+      const weight = Number(weightInput);
+      const height = Number(heightInput);
+
+      if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+        alert("⚠️ Please enter valid positive numbers for weight and height!");
+        return;
+      }
+
+      const bmi = (weight / (height * height)) * 703;
+
+      alert(`Your BMI is ${bmi.toFixed(1)}`);
+    }
+  </script>
+</head>
+<body onload="bmiCalculator()">
+</body>
+</html>

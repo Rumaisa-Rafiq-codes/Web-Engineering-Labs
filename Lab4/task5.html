@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exercise 5 - Guess the Number</title>
+  <script>
+    function guessTheNumber() {
+      const randomNumber = Math.floor(Math.random() * 10) + 1;
+      const maxAttempts = 3;
+      let attempts = 0;
+      let guessedCorrectly = false;
+
+      alert("🎯 Welcome to Guess the Number!\nGuess a number between 1 and 10.\nYou have 3 attempts.");
+
+      while (attempts < maxAttempts) {
+        const userInput = prompt(`Attempt ${attempts + 1}: Enter your guess (1–10)`);
+        if (userInput === null) {
+          alert("🚪 Game cancelled. Bye!");
+          return;
+        }
+
+        const guess = Number(userInput);
+
+        if (isNaN(guess) || guess < 1 || guess > 10) {
+          alert("⚠️ Please enter a number between 1 and 10!");
+          continue;
+        }
+
+        attempts++;
+
+        if (guess === randomNumber) {
+          alert(`🎉 Correct! The number was ${randomNumber}. You guessed it in ${attempts} attempts.`);
+          guessedCorrectly = true;
+          break;
+        } else if (guess > randomNumber) {
+          alert("📉 Too High!");
+        } else {
+          alert("📈 Too Low!");
+        }
+      }
+
+      if (!guessedCorrectly) {
+        alert(`❌ Sorry! You're out of attempts. The correct number was ${randomNumber}.`);
+      }
+    }
+  </script>
+</head>
+<body onload="guessTheNumber()">
+</body>
+</html>

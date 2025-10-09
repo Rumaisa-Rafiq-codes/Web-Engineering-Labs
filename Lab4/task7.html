@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exercise 7 - Daily Utilities Toolkit</title>
+  <script>
+    function dailyToolkit() {
+      const choice = prompt(
+        "🧰 Daily Utilities Toolkit\n\nChoose an option:\n" +
+        "1️⃣ Format Name (capitalize each word)\n" +
+        "2️⃣ Generate Random 4-digit OTP\n" +
+        "3️⃣ Search City (Karachi, Lahore, Islamabad)\n" +
+        "4️⃣ Show Today’s Date (dd/mm/yyyy)\n" +
+        "5️⃣ Mini Calculator (add, subtract, multiply, divide)"
+      );
+
+      if (choice === null) {
+        alert("🚪 Toolkit closed.");
+        return;
+      }
+
+      switch (choice) {
+        case "1": {
+          const name = prompt("Enter your full name:");
+          if (!name || name.trim() === "") {
+            alert("⚠️ Please enter a valid name!");
+            break;
+          }
+          const formatted = name
+            .toLowerCase()
+            .split(" ")
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+          alert(`Formatted Name: ${formatted}`);
+          break;
+        }
+
+        case "2": {
+          const otp = Math.floor(1000 + Math.random() * 9000);
+          alert(`🔐 Your 4-digit OTP is: ${otp}`);
+          break;
+        }
+
+        case "3": {
+          const cities = ["Karachi", "Lahore", "Islamabad"];
+          const cityInput = prompt("Enter city name to search:");
+          if (!cityInput || cityInput.trim() === "") {
+            alert("⚠️ Please enter a valid city name!");
+            break;
+          }
+          const found = cities.some(
+            city => city.toLowerCase() === cityInput.toLowerCase()
+          );
+          alert(found ? "✅ City Found!" : "❌ City Not Found!");
+          break;
+        }
+
+        case "4": {
+          const today = new Date();
+          const date = `${today.getDate().toString().padStart(2, "0")}/${(today.getMonth() + 1)
+            .toString()
+            .padStart(2, "0")}/${today.getFullYear()}`;
+          alert(`📅 Today’s Date: ${date}`);
+          break;
+        }
+
+        case "5": {
+          const num1 = Number(prompt("Enter first number:"));
+          const num2 = Number(prompt("Enter second number:"));
+          if (isNaN(num1) || isNaN(num2)) {
+            alert("⚠️ Please enter valid numbers!");
+            break;
+          }
+
+          const operation = prompt(
+            "Choose operation:\n+\n-\n*\n/"
+          );
+
+          let result;
+          switch (operation) {
+            case "+": result = num1 + num2; break;
+            case "-": result = num1 - num2; break;
+            case "*": result = num1 * num2; break;
+            case "/":
+              if (num2 === 0) {
+                alert("🚫 Division by zero not allowed!");
+                return;
+              }
+              result = num1 / num2;
+              break;
+            default:
+              alert("❌ Invalid operation!");
+              return;
+          }
+
+          alert(`🧮 Result: ${num1} ${operation} ${num2} = ${result}`);
+          break;
+        }
+
+        default:
+          alert("❌ Invalid option! Please select between 1–5.");
+      }
+    }
+  </script>
+</head>
+<body onload="dailyToolkit()">
+</body>
+</html>
